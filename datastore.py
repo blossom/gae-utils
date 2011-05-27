@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 from google.appengine.api import datastore_types
-from django.utils import simplejson
+import simplejson
 
 class JsonProperty(db.Property):
     """
