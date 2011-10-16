@@ -1,6 +1,8 @@
 from google.appengine.ext import db
 from google.appengine.api import datastore_types
-import simplejson
+
+try: import simplejson as json
+except ImportError: import json
 
 class JsonProperty(db.Property):
     """
@@ -18,8 +20,9 @@ class JsonProperty(db.Property):
         if value is None:
             return {}
         if isinstance(value, unicode) or isinstance(value, str):
-            return simplejson.loads(value)
+            return json.loads(value)
         return value
     def _deflate(self, value):
-        return simplejson.dumps(value)
+        return json.dumps(value)
     data_type = datastore_types.Text
+
